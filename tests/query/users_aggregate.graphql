@@ -1,0 +1,7 @@
+query Query($usersAggregateDistinctOn: [users_select_column!]) {
+    users_aggregate(distinct_on: $usersAggregateDistinctOn) {
+        nodes {
+            id
+        }
+    }
+}
