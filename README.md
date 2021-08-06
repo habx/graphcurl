@@ -8,7 +8,8 @@
 [![License](https://img.shields.io/github/license/habx/graphcurl)](/LICENSE)
 
 
-I created this tool to facilitate the use of GraphQL in CLI. 
+I created this tool to facilitate GraphQL usage in CLI.
+
 There are many use cases in devops use : [Argo](https://github.com/argoproj/argo-workflows), crontab, jenkins..
 
 I was inspired by another open source project. [hasura/graphqurl](https://github.com/hasura/graphqurl)
@@ -20,7 +21,6 @@ I was inspired by another open source project. [hasura/graphqurl](https://github
 [Command line](docs)
 
 ### Installing
-
 
 
 #### Docker
