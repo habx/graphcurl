@@ -5,7 +5,7 @@ alias:
   # - Docker configuration - #
   - &docker_golang_configuration
     docker:
-      - image: circleci/golang
+      - image: cimg/go:1.16.5
         user: root
   - &docker_buildpack_deps_python_configuration
     docker:
@@ -44,7 +44,7 @@ alias:
 
   - &docker_golang_with_localstack_configuration
     docker:
-      - image: circleci/golang
+      - image: cimg/go:1.16.5
         user: root
       - image: localstack/localstack
         name: localstack
@@ -136,7 +136,7 @@ jobs:
 
   publish-github-release:
     docker:
-      - image: circleci/golang:1.13
+      - image: cimg/go:1.16.5
     working_directory: /go/src/github.com/habx/graphcurl
     steps:
       - checkout
