@@ -135,8 +135,7 @@ jobs:
           tag: $CIRCLE_TAG
 
   publish-github-release:
-    docker:
-      - image: cimg/go:1.16.5
+    <<: *docker_golang_configuration
     working_directory: /go/src/github.com/habx/graphcurl
     steps:
       - checkout
