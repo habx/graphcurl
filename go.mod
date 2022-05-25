@@ -3,7 +3,7 @@ module github.com/habx/graphcurl
 go 1.15
 
 require (
-	github.com/imdario/mergo v0.3.12
+	github.com/imdario/mergo v0.3.13
 	github.com/machinebox/graphql v0.2.2
 	github.com/matryer/is v1.4.0 // indirect
 	github.com/smartystreets/goconvey v1.7.2
