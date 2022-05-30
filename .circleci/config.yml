@@ -9,7 +9,7 @@ alias:
         user: root
   - &docker_buildpack_deps_python_configuration
     docker:
-      - image: cimg/python:3.9
+      - image: cimg/python:3.10
         user: root
   # - Jobs filters - #
   - &filters_ignore_tags
