@@ -9,7 +9,7 @@ require (
 	github.com/smartystreets/goconvey v1.7.2
 	github.com/spf13/cobra v1.4.0
 	github.com/spf13/pflag v1.0.5
-	github.com/spf13/viper v1.11.0
+	github.com/spf13/viper v1.12.0
 	github.com/tidwall/sjson v1.2.4
 	go.uber.org/zap v1.21.0
 )
