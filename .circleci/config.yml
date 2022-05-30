@@ -5,7 +5,7 @@ alias:
   # - Docker configuration - #
   - &docker_golang_configuration
     docker:
-      - image: cimg/go:1.16.5
+      - image: cimg/go:1.16.15
         user: root
   - &docker_buildpack_deps_python_configuration
     docker:
@@ -44,7 +44,7 @@ alias:
 
   - &docker_golang_with_localstack_configuration
     docker:
-      - image: cimg/go:1.16.5
+      - image: cimg/go:1.16.15
         user: root
       - image: localstack/localstack
         name: localstack
