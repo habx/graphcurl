@@ -12,7 +12,7 @@ I created this tool to facilitate GraphQL usage in CLI.
 
 There are many use cases in devops use : [Argo](https://github.com/argoproj/argo-workflows), crontab, jenkins..
 
-I was inspired by another open source project. [hasura/graphqurl](https://github.com/hasura/graphqurl)
+I was inspired by another open source project: [hasura/graphqurl](https://github.com/hasura/graphqurl).
 
 ## Getting Started
 
@@ -86,4 +86,4 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
