@@ -19,8 +19,6 @@ RUN apk add --no-cache ca-certificates tzdata
 
 WORKDIR /go/src/github.com/habx/graphcurl/
 
-COPY --from=builder /usr/share/zoneinfo/ /usr/share/zoneinfo/
-COPY --from=builder /etc/ssl/certs/ /etc/ssl/certs/
 COPY dist/graphcurl_linux_amd64/graphcurl_linux_amd64 /go/src/github.com/habx/graphcurl/graphcurl_linux_amd64
 
 ENTRYPOINT ["./graphcurl_linux_amd64"]
