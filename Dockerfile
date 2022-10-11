@@ -1,8 +1,4 @@
-FROM golang:alpine as builder
-
-RUN apk add --no-cache ca-certificates tzdata
-
-FROM scratch
+FROM alpine:3.16.2
 
 ARG CREATED
 ARG REVISION
@@ -19,11 +15,10 @@ LABEL org.opencontainers.image.created=$CREATED \
         org.opencontainers.image.vendor="Habx"
 
 ENV TZ=Europe/Paris
+RUN apk add --no-cache ca-certificates tzdata
 
 WORKDIR /go/src/github.com/habx/graphcurl/
 
-COPY --from=builder /usr/share/zoneinfo/ /usr/share/zoneinfo/
-COPY --from=builder /etc/ssl/certs/ /etc/ssl/certs/
 COPY dist/graphcurl_linux_amd64/graphcurl_linux_amd64 /go/src/github.com/habx/graphcurl/graphcurl_linux_amd64
 
 ENTRYPOINT ["./graphcurl_linux_amd64"]
