@@ -3,10 +3,11 @@ package commands
 import (
 	"fmt"
 
-	"github.com/habx/graphcurl/commands/post"
-	"github.com/habx/graphcurl/flags"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
+
+	"github.com/habx/graphcurl/commands/post"
+	"github.com/habx/graphcurl/flags"
 )
 
 // RootCommand: is the main command of the CLI.

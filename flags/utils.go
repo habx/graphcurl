@@ -4,10 +4,11 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/habx/graphcurl/logger"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
+
+	"github.com/habx/graphcurl/logger"
 )
 
 func BindFlags(cmd *cobra.Command, v *viper.Viper) {

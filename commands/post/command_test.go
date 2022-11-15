@@ -1,3 +1,4 @@
+// nolint: typecheck
 package post
 
 import (
@@ -32,10 +33,8 @@ func Test_BuildVariablesStruct(t *testing.T) {
 			"two": "b",
 		})
 	})
-
 }
 func Test_mergeVariables(t *testing.T) {
-
 	Convey("Bad file don't exists", t, func() {
 		variables, err := mergeVariables(map[string]string{
 			"one": "a",
@@ -62,7 +61,7 @@ func Test_mergeVariables(t *testing.T) {
 			"test": map[string]interface{}{
 				"taskErrorMessage": "",
 				"taskStatus":       "succeeded"},
-			"two": "b",
+			"two":     "b",
 			"enabled": true,
 		})
 		So(err, ShouldBeNil)
@@ -85,7 +84,6 @@ func Test_loadVariablesFromFile(t *testing.T) {
 			So(variables, ShouldBeNil)
 			So(err, ShouldNotBeNil)
 		})
-
 	})
 
 	Convey("bad file format", t, func() {
@@ -110,7 +108,6 @@ func Test_loadVariablesFromFile(t *testing.T) {
 }
 
 func Test_Command(t *testing.T) {
-
 	Convey("Standard command", t, func() {
 		Command.SetArgs([]string{
 			"-u=https://api.spacex.land/graphql/",
@@ -160,6 +157,4 @@ func Test_Command(t *testing.T) {
 		err := Command.Execute()
 		So(err, ShouldBeNil)
 	})
-
-
 }

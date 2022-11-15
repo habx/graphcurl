@@ -2,10 +2,15 @@ package graphrequest
 
 import (
 	"context"
+	"errors"
+	"fmt"
+	"time"
+
 	"github.com/machinebox/graphql"
 	"go.uber.org/zap"
-	"time"
 )
+
+var errPost = errors.New("cannot post after retry")
 
 type PostConfig struct {
 	URL       string
@@ -30,11 +35,11 @@ func (p *PostConfig) PostRetry(count int, delay int) (interface{}, error) {
 		}
 		// exit for last loop
 		if (i + 1) == count {
-			return data, err
+			return data, errPost
 		}
 		time.Sleep(time.Duration(delay) * time.Second)
 	}
-	return data, err
+	return data, fmt.Errorf("post retry failed %w", err)
 }
 
 func (p *PostConfig) SetupUserAgent(userAgent string) {
@@ -52,7 +57,7 @@ func (p *PostConfig) Post() (interface{}, error) {
 	}
 	var respData interface{}
 	if err := client.Run(context.Background(), req, &respData); err != nil {
-		return respData, err
+		return respData, fmt.Errorf("cannot post: %w", err)
 	}
 	return respData, nil
 }

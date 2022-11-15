@@ -12,6 +12,7 @@ var (
 )
 
 func initLogger(logLevel string) (*zap.Logger, error) {
+	// nolint: wrapcheck
 	return zap.Config{
 		Level: zap.NewAtomicLevelAt(func(level string) zapcore.Level {
 			if level == "debug" {

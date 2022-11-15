@@ -1,10 +1,12 @@
+// nolint: typecheck
 package flags
 
 import (
-	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 	"os"
 	"testing"
+
+	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 
 	. "github.com/smartystreets/goconvey/convey"
 )
@@ -12,7 +14,7 @@ import (
 func Test_BindFlags(t *testing.T) {
 	Convey("testing bind variables", t, func() {
 		commands := &cobra.Command{
-			Use:     "graphcurl",
+			Use: "graphcurl",
 		}
 		var userAgent string
 		commands.Flags().StringVarP(&userAgent, "test-graphcurl", "", "", " ")

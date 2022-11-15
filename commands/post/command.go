@@ -3,18 +3,19 @@ package post
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/imdario/mergo"
-	"github.com/tidwall/sjson"
-	"io/ioutil"
 	"os"
 	"strconv"
+
+	"github.com/imdario/mergo"
+	"github.com/tidwall/sjson"
+
+	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
+	"go.uber.org/zap"
 
 	"github.com/habx/graphcurl/flags"
 	"github.com/habx/graphcurl/graphrequest"
 	"github.com/habx/graphcurl/logger"
-	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
-	"go.uber.org/zap"
 )
 
 var (
@@ -37,7 +38,6 @@ var (
 )
 
 func init() {
-
 	// requests
 	Command.Flags().StringVarP(&requests.URL, "url", "u", "", "URL API graphrequest")
 	MarkFlagRequiredErr(Command.MarkFlagRequired("url"))
@@ -61,7 +61,7 @@ func validation(cmd *cobra.Command, cmdLineArgs []string) {
 	if _, err := os.Stat(requests.FilePath); os.IsNotExist(err) {
 		l.Fatalw("Check your query file path", "err", err)
 	}
-	content, err := ioutil.ReadFile(requests.FilePath)
+	content, err := os.ReadFile(requests.FilePath)
 
 	if err != nil {
 		l.Fatalw("cannot read file", "err", err)
@@ -135,7 +135,7 @@ func mergeVariables(variablesFromCli map[string]string, variablesFromFile map[st
 	variables := make(map[string]interface{})
 	variablesFromFileLoaded, err := loadVariablesFromFile(variablesFromFile)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("cannot load variables from file: %w", err)
 	}
 	// from files
 	for k, v := range variablesFromFileLoaded {
@@ -151,7 +151,6 @@ func mergeVariables(variablesFromCli map[string]string, variablesFromFile map[st
 		} else {
 			variables[k] = v
 		}
-
 	}
 	return variables, nil
 }
@@ -159,19 +158,18 @@ func loadVariablesFromFile(variablesFromFile map[string]string) (map[string]inte
 	variablesFromFileLoaded := make(map[string]interface{})
 	for k, file := range variablesFromFile {
 		if _, err := os.Stat(file); os.IsNotExist(err) {
-			return nil, err
+			return nil, fmt.Errorf("cannot load variables from file: %w", err)
 		}
-		content, err := ioutil.ReadFile(file)
+		content, err := os.ReadFile(file)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("cannot read file %s: %w", file, err)
 		}
 		var variablesFromFile interface{}
 		err = json.Unmarshal(content, &variablesFromFile)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("cannot unmarshal variables from file %s: %w", file, err)
 		}
 		variablesFromFileLoaded[k] = variablesFromFile
 	}
 	return variablesFromFileLoaded, nil
-
 }

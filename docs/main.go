@@ -3,8 +3,9 @@ package main
 import (
 	"log"
 
-	"github.com/habx/graphcurl/commands"
 	"github.com/spf13/cobra/doc"
+
+	"github.com/habx/graphcurl/commands"
 )
 
 func main() {
