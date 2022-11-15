@@ -3,11 +3,11 @@ package post
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/imdario/mergo"
-	"github.com/tidwall/sjson"
-	"io/ioutil"
 	"os"
 	"strconv"
+
+	"github.com/imdario/mergo"
+	"github.com/tidwall/sjson"
 
 	"github.com/habx/graphcurl/flags"
 	"github.com/habx/graphcurl/graphrequest"
@@ -61,7 +61,7 @@ func validation(cmd *cobra.Command, cmdLineArgs []string) {
 	if _, err := os.Stat(requests.FilePath); os.IsNotExist(err) {
 		l.Fatalw("Check your query file path", "err", err)
 	}
-	content, err := ioutil.ReadFile(requests.FilePath)
+	content, err := os.ReadFile(requests.FilePath)
 
 	if err != nil {
 		l.Fatalw("cannot read file", "err", err)
@@ -161,7 +161,7 @@ func loadVariablesFromFile(variablesFromFile map[string]string) (map[string]inte
 		if _, err := os.Stat(file); os.IsNotExist(err) {
 			return nil, err
 		}
-		content, err := ioutil.ReadFile(file)
+		content, err := os.ReadFile(file)
 		if err != nil {
 			return nil, err
 		}
